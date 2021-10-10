@@ -3,30 +3,33 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
-    path: 'register',
-    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'main',
-    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
+    path: 'korisnik-home',
+    loadChildren: () => import('./korisnik-home/korisnik-home.module').then( m => m.KorisnikHomePageModule)
   },
   {
-    path: 'moj-nalog',
-    loadChildren: () => import('./moj-nalog/moj-nalog.module').then( m => m.MojNalogPageModule)
+    path: 'agent-home',
+    loadChildren: () => import('./agent-home/agent-home.module').then( m => m.AgentHomePageModule)
   },
   {
-    path: 'moje-rezervacije',
-    loadChildren: () => import('./moje-rezervacije/moje-rezervacije.module').then( m => m.MojeRezervacijePageModule)
+    path: 'admin-home',
+    loadChildren: () => import('./admin-home/admin-home.module').then( m => m.AdminHomePageModule)
   },
+  {
+    path: 'korisnik-rezervacije',
+    loadChildren: () => import('./korisnik-rezervacije/korisnik-rezervacije.module').then( m => m.KorisnikRezervacijePageModule)
+  },
+
+  
+
 ];
 
 @NgModule({

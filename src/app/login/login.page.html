@@ -1,0 +1,29 @@
+<ion-content class="background">
+  <div class="ion-padding">
+    
+  
+
+    <form #f="ngForm" (ngSubmit)="signIn(f)">
+      <div class="ion-padding">
+        <ion-item>
+          <ion-label position="floating">
+            <img src="https://img.icons8.com/external-kiranshastry-lineal-color-kiranshastry/15/ffffff/external-email-advertising-kiranshastry-lineal-color-kiranshastry-1.png"/> 
+            Емаил адреса</ion-label>
+          <ion-input type="text" ngModel name="email" required minlength="6" required></ion-input> 
+        </ion-item>
+        <br>
+        <ion-item>
+          <ion-label position="floating">
+            <img src="https://img.icons8.com/office/15/000000/key.png"/>
+            Лозинка</ion-label>
+          <ion-input type="password" ngModel name="password" required></ion-input>
+        </ion-item>
+       
+      </div>
+        <ion-button type="submit" class="actionbutton" expand="block" fill="clear" style="text-transform: none;">
+          <!-- <ion-icon name="log-in"></ion-icon> -->
+          <img src="https://img.icons8.com/clouds/60/000000/user.png"/>
+          Пријави се</ion-button>
+    </form>
+  </div>
+</ion-content>

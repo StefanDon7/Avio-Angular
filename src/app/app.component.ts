@@ -4,7 +4,6 @@ import { AlertController, MenuController, Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-import { MojeRezervacijePage } from './moje-rezervacije/moje-rezervacije.page';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +21,11 @@ export class AppComponent {
     private alertController:AlertController,
     private menuController:MenuController
       ) {
-    this.sideMenu();
+    // this.sideMenu();
     this.initializeApp();
-    if(sessionStorage.getItem("klijent")!=null){
-      this.ishidden=false;
-    }
+    // if(sessionStorage.getItem("korisnik")!=null){
+    //   this.ishidden=false;
+    // }
   }
 
   initializeApp() {
@@ -36,45 +35,45 @@ export class AppComponent {
     });
   }
 
-  sideMenu()
-  {  this.navigate =
-    [
-      {
-        title : "Почетна",
-        url   : "/home",
-        icon  : "https://img.icons8.com/clouds/70/ffffff/home-page.png",
-        number: 0
-      },
-      {
-        title : "Ред вожње",
-        url   : "/main",
-        icon  : "https://img.icons8.com/clouds/70/ffffff/train.png",
-        number: 0
-      },
-      {
-        title : "Мој налог",
-        url   : "/moj-nalog",
-        icon  : "https://img.icons8.com/clouds/80/000000/edit-user.png",
-        number: 0
-      },
-      {
-        title : "Моје резервације",
-        url   : "/moje-rezervacije",
-        icon  : "https://img.icons8.com/clouds/80/000000/ticket.png",
-        number: 0
-      },
-    ]
-  }
+  // sideMenu()
+  // {  this.navigate =
+  //   [
+  //     {
+  //       title : "Почетна",
+  //       url   : "/home",
+  //       icon  : "https://img.icons8.com/clouds/70/ffffff/home-page.png",
+  //       number: 0
+  //     },
+  //     {
+  //       title : "Ред вожње",
+  //       url   : "/main",
+  //       icon  : "https://img.icons8.com/clouds/70/ffffff/train.png",
+  //       number: 0
+  //     },
+  //     {
+  //       title : "Мој налог",
+  //       url   : "/moj-nalog",
+  //       icon  : "https://img.icons8.com/clouds/80/000000/edit-user.png",
+  //       number: 0
+  //     },
+  //     {
+  //       title : "Моје резервације",
+  //       url   : "/moje-rezervacije",
+  //       icon  : "https://img.icons8.com/clouds/80/000000/ticket.png",
+  //       number: 8
+  //     },
+  //   ]
+  // }
   openPage(page:string){
     if(page=="/moje-rezervacije"){
-      if(sessionStorage.getItem("klijent")==null){   
+      if(sessionStorage.getItem("korisnik")==null){   
         this.router.navigate(["/register"]);
         this.vratiPoruku("Пажња","","Морате бити регистровати!");
       }else{
         this.router.navigate([page])
       }
     }else if(page=="/moj-nalog"){
-      if(sessionStorage.getItem("klijent")==null){
+      if(sessionStorage.getItem("korisnik")==null){
         this.router.navigate(["/register"]);
         this.vratiPoruku("Пажња","","Морате бити регистровати!");
       }else{
@@ -101,15 +100,14 @@ export class AppComponent {
    /*
   Unistava sessiju za klijenta i odjavljuje se!
   */
- izlogujSe() {
-  sessionStorage.removeItem("klijent");
-  sessionStorage.removeItem("klijentEmail");
-  sessionStorage.removeItem("klijentIme");
-  sessionStorage.removeItem("klijentPrezime");
-  sessionStorage.removeItem("klijentKorisnickoIme");
-  this.router.navigate(["/home"]);
-  this.menuController.close();
-  this.ishidden=true;
-
-}
+//  izlogujSe() {
+//   sessionStorage.removeItem("korisnik");
+//   sessionStorage.removeItem("korisnik");
+//   sessionStorage.removeItem("korisnik");
+//   sessionStorage.removeItem("korisnik");
+//   sessionStorage.removeItem("klijentKorisnickoIme");
+//   this.router.navigate(["/home"]);
+//   this.menuController.close();
+//   this.ishidden=true;
+// }
 }
