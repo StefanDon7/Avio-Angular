@@ -7,7 +7,6 @@ import { AlertController } from "@ionic/angular";
 import { KorisnikHomeService } from "./korisnik-home.service";
 import { Korisnik } from "../models/korisnik.model";
 import { Mesto } from "../models/mesto.model";
-import { format } from "path";
 @Component({
   selector: "app-korisnik-home",
   templateUrl: "./korisnik-home.page.html",

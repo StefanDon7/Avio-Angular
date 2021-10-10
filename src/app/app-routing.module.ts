@@ -27,6 +27,15 @@ const routes: Routes = [
     path: 'korisnik-rezervacije',
     loadChildren: () => import('./korisnik-rezervacije/korisnik-rezervacije.module').then( m => m.KorisnikRezervacijePageModule)
   },
+  {
+    path: 'admin-registracija',
+    loadChildren: () => import('./admin-registracija/admin-registracija.module').then( m => m.AdminRegistracijaPageModule)
+  },
+  {
+    path: 'admin-agenti',
+    loadChildren: () => import('./admin-agenti/admin-agenti.module').then( m => m.AdminAgentiPageModule)
+  },
+  
 
   
 
