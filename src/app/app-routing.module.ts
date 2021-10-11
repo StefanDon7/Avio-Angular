@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'admin-agenti',
     loadChildren: () => import('./admin-agenti/admin-agenti.module').then( m => m.AdminAgentiPageModule)
   },
+  {
+    path: 'agent-let',
+    loadChildren: () => import('./agent-let/agent-let.module').then( m => m.AgentLetPageModule)
+  },
+  {
+    path: 'agent-rezervacije',
+    loadChildren: () => import('./agent-rezervacije/agent-rezervacije.module').then( m => m.AgentRezervacijePageModule)
+  },
   
 
   

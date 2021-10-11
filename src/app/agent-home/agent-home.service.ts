@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class AgentHomeService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
+
+  vratiLetove(){
+    return this.http.get('https://localhost:44388/api/Let/get/all');
+  }
 }
