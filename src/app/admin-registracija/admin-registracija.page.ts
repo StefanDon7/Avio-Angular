@@ -17,7 +17,13 @@ export class AdminRegistracijaPage implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="2"){
+      this.router.navigate(["/error"]);
+      return;
+    }
+  }
 
   korisnik: Korisnik;
   email: any;

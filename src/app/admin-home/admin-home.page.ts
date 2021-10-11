@@ -22,6 +22,11 @@ export class AdminHomePage implements OnInit {
   letovi: any = [];
   saOtkazanima:boolean;
   ngOnInit() {
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="2"){
+      this.router.navigate(["/error"]);
+      return;
+    }
     this.vratiLetove();
   }
   ionChange(event){

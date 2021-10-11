@@ -21,6 +21,11 @@ export class AgentHomePage implements OnInit {
   letovi: any = [];
 
   ngOnInit() {
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="3"){
+      this.router.navigate(["/error"]);
+      return;
+    }
     this.vratiSveLetove();
   }
 

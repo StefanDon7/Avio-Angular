@@ -32,6 +32,12 @@ export class AgentLetPage implements OnInit {
   mesta2: any = [];
 
   ngOnInit() {
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="3"){
+      this.router.navigate(["/error"]);
+      return;
+    }
+    
     this.vratiMesta();
     this.vratiMesta2();
   }

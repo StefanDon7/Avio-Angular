@@ -11,7 +11,8 @@ import { KorisnikRezervacijeService } from './korisnik-rezervacije.service';
 })
 export class KorisnikRezervacijePage implements OnInit {
 
-  constructor(  private korisnikRezervacijeService: KorisnikRezervacijeService,
+  constructor(  
+    private korisnikRezervacijeService: KorisnikRezervacijeService,
     private router: Router,
     public _cookieService: CookieService,
     private alertController: AlertController) {
@@ -22,7 +23,11 @@ export class KorisnikRezervacijePage implements OnInit {
    rezervacije: any = [];
    korisnikID: string;
   ngOnInit() {
-
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="1"){
+      this.router.navigate(["/error"]);
+      return;
+    }
     this.vratiRezervacijeZaKlijenta();
   }
   vratiRezervacijeZaKlijenta() {

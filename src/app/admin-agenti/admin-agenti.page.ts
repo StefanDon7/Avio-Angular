@@ -20,7 +20,11 @@ export class AdminAgentiPage implements OnInit {
   rezervacije: any = [];
 
   ngOnInit() {
-
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="2"){
+      this.router.navigate(["/error"]);
+      return;
+    }
     this.vratiRezervacijeZaAgente();
   }
 

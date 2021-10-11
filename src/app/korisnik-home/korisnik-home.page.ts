@@ -37,6 +37,11 @@ export class KorisnikHomePage implements OnInit {
   listaMedjustanica: any = [];
 
   ngOnInit() {
+    var roleID=sessionStorage.getItem("role");
+    if(roleID!="1"){
+      this.router.navigate(["/error"]);
+      return;
+    }
     this.vratiMesta();
     this.vratiMesta2();
   }

@@ -43,6 +43,10 @@ const routes: Routes = [
     path: 'agent-rezervacije',
     loadChildren: () => import('./agent-rezervacije/agent-rezervacije.module').then( m => m.AgentRezervacijePageModule)
   },
+  {
+    path: 'error',
+    loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
+  },
   
 
   
