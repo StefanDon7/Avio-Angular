@@ -27,6 +27,10 @@ export class KorisnikHomeService {
   rezervisiKartu(letID:string,korisnikID:string,){
     return this.http.post('https://localhost:44388/api/Rezervacija/add',{ "letID": letID,"korisnikID": korisnikID})
   }
+
+  posaljiPoruku(){
+    return this.http.get('https://localhost:44388/api/Message/get')
+  }
  
- 
+  
 }

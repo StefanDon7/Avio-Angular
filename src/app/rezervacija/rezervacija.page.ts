@@ -14,6 +14,7 @@ export class RezervacijaPage implements OnInit {
   signaldata: any[] = [];
   rezervacija: any=[];
   rezervacije: any=[];
+  
   ngOnInit() {
     this._HubConnection = new HubConnectionBuilder()
       .withUrl("https://localhost:44388/rezervacije")
@@ -35,9 +36,7 @@ export class RezervacijaPage implements OnInit {
     this.http
       .get("https://localhost:44388/api/Rezervacija/get")
       .subscribe((data) => {
-        console.log(data);
         this.rezervacije=data;
-     
       });
   }
 }

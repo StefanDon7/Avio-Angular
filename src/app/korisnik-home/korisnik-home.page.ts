@@ -172,6 +172,16 @@ Vraca mesta i ubacuje ih u drugi kombo box!
         "Не можете резервисати карту за полазак који је реализован!"
       );
     }
+    this.posaljiPoruku();
+  }
+  posaljiPoruku() {
+    this.korisnikHomeService
+        .posaljiPoruku()
+        .subscribe((data) => {
+         
+        },(error) => {
+      
+        });
   }
 
   async vratiPoruku(header: string, subHeader: string, poruka: string) {

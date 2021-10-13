@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr";
 import { AlertController } from "@ionic/angular";
 import { CookieService } from "angular2-cookie/services/cookies.service";
+import { Poruka } from "../models/poruka.model";
 import { AgentRezervacijeService } from "./agent-rezervacije.service";
 
 @Component({
@@ -16,6 +18,7 @@ export class AgentRezervacijePage implements OnInit {
     public _cookieService: CookieService,
     private alertController: AlertController
   ) {}
+  private _HubConnection: HubConnection;
 
   ngOnInit() {
     var roleID = sessionStorage.getItem("role");
@@ -25,9 +28,13 @@ export class AgentRezervacijePage implements OnInit {
     }
     this.korisnikID = sessionStorage.getItem("korisnikID");
     this.vratiRezervacije();
+    // this.poveziSe();
   }
   rezervacije: any = [];
+  signaldata: any[] = [];
   korisnikID: string;
+  poruka: Poruka;
+  porukaString: string;
 
   vratiRezervacije() {
     this.agentRezervacijeService.vratiSveRezervacije().subscribe((data) => {
@@ -48,7 +55,6 @@ export class AgentRezervacijePage implements OnInit {
             "",
             "Усепешно сте потврдили резервацију!"
           );
-         
         },
         (error) => {
           this.vratiPoruku(
@@ -58,25 +64,25 @@ export class AgentRezervacijePage implements OnInit {
           );
         }
       );
-     
   }
 
-  // otkazirezervaciju(polazakid:string) {
-  //   console.log(polazakid);
-  //   console.log(this.korisnikID)
-  //   this.korisnikRezervacijeService.otkaziRezervaciju(this.korisnikID,polazakid).subscribe(data=>{
-  //        this.vratiRezervacijeZaKlijenta();
-  //        this.vratiPoruku("Успешно","отказана резервација","")
-  //   },(error) => {
-  //     this.vratiPoruku("Пажња", "", "Неупешно отказивање резервације!");
-  //     // this.refresh();
-  //   })
-
+  // poveziSe() {
+  //   this._HubConnection = new HubConnectionBuilder()
+  //     .withUrl("https://localhost:44388/poruka")
+  //     .build();
+  //   this._HubConnection
+  //     .start()
+  //     .then(() => console.log("Connection start"))
+  //     .catch((err) => {
+  //       console.log("Error");
+  //     });
+  //   this._HubConnection.on("BroadcastMessage", (poruka) => {
+  //     this.signaldata.push(poruka);
+  //     console.log(poruka);
+  //     this.porukaString = "Imate novu rezervaciju!";
+  //   });
   // }
 
-  /*
-VRACA ALERT PORUKU!
-*/
   async vratiPoruku(header: string, subHeader: string, poruka: string) {
     const alert = await this.alertController.create({
       header: header,
