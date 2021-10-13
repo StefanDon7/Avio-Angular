@@ -2,9 +2,9 @@
   <ion-menu side="start" menuId="first" contentId="content1">
     <ion-header>
       <ion-toolbar>
+        {{ime}}{{" "}}{{prezime}}{{" "}}{{role}}
         <ion-title style="color: white">
-          <ion-icon name="grid-outline"></ion-icon> Мени
-          
+         
         </ion-title>
         <ion-button
           slot="end"
@@ -39,6 +39,8 @@
               <ion-badge>{{pages.number}}</ion-badge>
                </div>
           </ion-button>
+          
+       
         </ion-menu-toggle>
       </ion-list>
     </ion-content>

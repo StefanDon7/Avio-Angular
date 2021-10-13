@@ -25,6 +25,10 @@ export class AppComponent {
     this.initializeApp();
     if(sessionStorage.getItem("korisnikID")!=null){
       this.ishidden=false;
+    }else{
+      this.ime=sessionStorage.getItem("ime");
+      this.prezime=sessionStorage.getItem("prezime");
+      this.role=sessionStorage.getItem("role");
     }
   }
 
@@ -34,6 +38,9 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+  ime:string;
+  prezime:string;
+  role:string
 
   sideMenu()
   {  this.navigate =

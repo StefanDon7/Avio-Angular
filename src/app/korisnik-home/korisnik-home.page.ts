@@ -78,6 +78,8 @@ Vraca mesta i ubacuje ih u drugi kombo box!
       this.vratiPoruku("Грешка", "", "Сва поља морају бити изабрана!");
     } else {
       console.log(this.bezPresedanja)
+      console.log(mesto1)
+      console.log(mesto2)
       if(this.bezPresedanja){
         this.korisnikHomeService
         .vratiLetoveBezPresedanja(mesto1.naziv, mesto2.naziv, this.selectedDateConverted)
@@ -100,10 +102,8 @@ Vraca mesta i ubacuje ih u drugi kombo box!
 
   parametriDobri(mesto1: Mesto, mesto2: Mesto) {
     if (mesto1 == null || mesto2 == null) {
-      console.log("81");
       return false;
     } else if (this.selectedDateConverted == null) {
-      console.log("85");
       return false;
     }
     return true;
@@ -135,8 +135,6 @@ Vraca mesta i ubacuje ih u drugi kombo box!
     Rezervisi kartu!
   */
   rezervisiKartuUnosUBazu(letID: string) {
-
-   
       this.korisnikHomeService
         .rezervisiKartu(letID, this.korisnikID)
         .subscribe((data) => {

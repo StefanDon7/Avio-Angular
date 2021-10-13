@@ -23,6 +23,10 @@ export class AgentLetPage implements OnInit {
   year: any;
   selectedDate: any;
   selectedDateConverted: any;
+  selectedTime: any;
+  selectedTimeConverted: any;
+
+  datum: string;
 
   korisnikID: string;
 
@@ -32,15 +36,33 @@ export class AgentLetPage implements OnInit {
   mesta2: any = [];
 
   ngOnInit() {
-    var roleID=sessionStorage.getItem("role");
-    if(roleID!="3"){
+    var roleID = sessionStorage.getItem("role");
+    if (roleID != "3") {
       this.router.navigate(["/error"]);
       return;
     }
-    
+
     this.vratiMesta();
     this.vratiMesta2();
   }
+
+  convert() {
+    let selectedDateConverted = this.datepipe.transform(
+      this.selectedDate,
+      "yyyy-MM-dd"
+    );
+    this.selectedDateConverted = selectedDateConverted;
+    console.log(selectedDateConverted);
+  }
+  convertTime() {
+    let selectedTimeConverted = this.datepipe.transform(
+      this.selectedTime,
+      "HH:mm"
+    );
+    this.selectedTimeConverted = selectedTimeConverted;
+    console.log(selectedTimeConverted);
+  }
+
   /*
  Vraca mesta i ubacuje ih u prvi kombo box!
   */
@@ -57,14 +79,30 @@ Vraca mesta i ubacuje ih u drugi kombo box!
       this.mesta2 = mesta;
     });
   }
-  napraviLet(mesto1:any,mesto2:any,datum:any,brojPresedanja:any,brojMesta:any) {
-        this.agentletservice.napraviPolazak(mesto1,mesto2,datum,brojPresedanja,brojMesta).
-    subscribe((data) => {
-      console.log(mesto1)
-    console.log(mesto2)
-    console.log(datum)
-    console.log(brojPresedanja)
-    console.log(brojMesta)
-    });
+  napraviLet(mesto1: any, mesto2: any, brojPresedanja: any, brojMesta: any) {
+    this.napraviDatum();
+    this.agentletservice
+      .napraviPolazak(mesto1, mesto2, this.datum, brojPresedanja, brojMesta)
+      .subscribe((data) => {
+        this.vratiPoruku("Успешно","","Креиран лет!");
+      });
   }
+  napraviDatum() {
+    this.datum = this.selectedDateConverted + " " + this.selectedTimeConverted;
+    console.log(this.datum);
+  }
+
+  async vratiPoruku(header: string, subHeader: string, poruka: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      subHeader: subHeader,
+      message: poruka,
+      buttons: ["Ок"],
+    });
+    await alert.present();
+  }
+  refresh(): void {
+    window.location.reload();
+  }
+
 }

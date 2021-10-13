@@ -20,60 +20,51 @@ export class AdminHomePage implements OnInit {
     private alertController: AlertController
   ) {}
   letovi: any = [];
-  saOtkazanima:boolean;
+  saOtkazanima: boolean;
+  poruka: string;
   ngOnInit() {
-    var roleID=sessionStorage.getItem("role");
-    if(roleID!="2"){
+    var roleID = sessionStorage.getItem("role");
+    if (roleID != "2") {
       this.router.navigate(["/error"]);
       return;
     }
     this.vratiLetove();
   }
-  ionChange(event){
-    if(this.saOtkazanima){
-      this.saOtkazanima=false;
-    }else{
-      this.saOtkazanima=true;
+  ionChange(event) {
+    if (this.saOtkazanima) {
+      this.saOtkazanima = false;
+    } else {
+      this.saOtkazanima = true;
     }
   }
 
-  vratiLetoveCheckBox(){
-    if(this.saOtkazanima){
+  vratiLetoveCheckBox() {
+    if (this.saOtkazanima) {
       this.vratiLetove1();
-
-    }else{
+    } else {
       this.vratiLetove();
-   
     }
   }
 
-  vratiLetove(){
+  vratiLetove() {
     this.adminHomeService.vratiLetove().subscribe(
       (data) => {
-        this.letovi=data;
+        this.letovi = data;
       },
       (error) => {
-        this.vratiPoruku(
-          "Пажња",
-          "",
-          ""
-        );
-       this.refresh();
+        this.vratiPoruku("Пажња", "", "");
+        this.refresh();
       }
     );
   }
-  vratiLetove1(){
+  vratiLetove1() {
     this.adminHomeService.vratiSveLetove().subscribe(
       (data) => {
-        this.letovi=data;
+        this.letovi = data;
       },
       (error) => {
-        this.vratiPoruku(
-          "Пажња",
-          "",
-          ""
-        );
-         this.refresh();
+        this.vratiPoruku("Пажња", "", "");
+        this.refresh();
       }
     );
   }
@@ -81,19 +72,28 @@ export class AdminHomePage implements OnInit {
   otkaziLet(letID: string) {
     this.adminHomeService.otkaziLet(letID).subscribe(
       (data) => {
-        this.vratiPoruku(
-          "Полазак",
-          "",
-          ""
-        );
+        this.refresh();
       },
       (error) => {
         this.vratiPoruku(
-          "Пажња",
-          "",
+          "Грешка",
+          "Не можете отказати резервацију",
           error.message
         );
-        // this.refresh();
+      }
+    );
+  }
+  ponistiOtkazivanje(letID: string) {
+    this.adminHomeService.ponistiOtkazivanje(letID).subscribe(
+      (data) => {
+        this.refresh();
+      },
+      (error) => {
+        this.vratiPoruku(
+          "Грешка",
+          "Не можете отказати резервацију",
+          error.message
+        );
       }
     );
   }

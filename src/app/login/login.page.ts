@@ -23,7 +23,8 @@ export class LoginPage implements OnInit {
 
   korisnik: Korisnik;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   signIn(form: NgForm) {
     if (!this.proveriPolja(form)) {
@@ -57,6 +58,9 @@ export class LoginPage implements OnInit {
       sessionStorage.setItem("prezime", this.korisnik.prezime + "");
       sessionStorage.setItem("email", this.korisnik.email + "");
       sessionStorage.setItem("role", this.korisnik.roleID + "");
+      this.appComponents.ime=this.korisnik.ime;
+      this.appComponents.prezime=this.korisnik.prezime;
+     
       this.vratiPoruku(
         "Успешно пријављивање",
         "Добродошли",
@@ -66,17 +70,19 @@ export class LoginPage implements OnInit {
         case 1:
           console.log("KORISNIK");
           this.router.navigate(["/korisnik-home"]);
-
+          this.appComponents.role="Korisnik";
           break;
 
         case 2:
           console.log("ADMIN");
           this.router.navigate(["/admin-home"]);
+          this.appComponents.role="Admin";
           break;
 
         case 3:
           console.log("AGENT");
           this.router.navigate(["/agent-home"]);
+          this.appComponents.role="Agent";
           break;
 
         default:
